@@ -1,0 +1,84 @@
+<!-- navbar-dark y bg-dark le dan color al navbar y ayudan a mostrar la hamburguesa (no se porque)
+navbar es necesario para que funcione el navbar de bootstrap
+navbar-expand-md indica a que tamano de pantalla ocurre el colapso -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand" href="">ToDoList</a>
+
+  <!-- Este boton es la hamburguesa -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!-- collapse navbar-collapse indica que este div es el que se va a colapsar y el id tambien ayuda en eso (no se como) -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <!-- navbar-nav permite el uso de dropdowns y mantiene todo a la misma altura full 
+    el mr-auto permite que todo lo que venga despues, en este caso despues del ul vaya pegado del lado derecho del navbar -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" [ngClass]="{'active': navbarActive==='Home'}">
+        <a class="nav-link" href="#">Home
+
+          <!-- No se que hace este span pero supuestamente es importante -->
+          <span class="sr-only">(current)</span>
+
+        </a>
+      </li>
+      <li class="nav-item" [ngClass]="{'active': navbarActive==='Manage'}">
+        <a class="nav-link" href="#" routerLink="manage">Manage
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+    </ul>
+    <!-- Este es un ul distinto para que salgn del lado derecho del navbar -->
+    <ul class="navbar-nav">
+      <li *ngIf="token === null || token === void">
+        <a class="nav-link" href="#">Sign Up
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li *ngIf="token === null || token === void">
+
+        <!-- ngbDropdown es la manera de iniciar dropdowns en angular 4 con ng-boostrap sin la necesidad de scripts aparte
+        la directiva ngDropdownToggle indica que boton, link, etc activa el dropdown
+        el span es el triangulit de adorno
+        ngbDropdownMenu es la directiva para establecer que eso es lo que se muestra en el dropdown
+        la clase p-4 sirve para darle padding a lo que esta dentro del dropdwon y no se salga del mismo
+        el pl-5 cumple la misma funcionalidad solo que para el checkbox padding left 5 
+        align-self-center es para centrar en el centro vertical, en este caso es para que lable y el checkbox esten a la misma altura-->
+        <div ngbDropdown>
+          <a ngbDropdownToggle class="nav-link" href="#" id="dropdownMenuLink">
+            <span class="glyphicon glyphicon-triangle-bottom"></span> Login
+          </a>
+          <div class="login" ngbDropdownMenu>
+            <div class="container p-4">
+              <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+                <label for="dropdownFormEmail">Email</label>
+                <input ngModel name="email" type="email" class="form-control" id="dropdownFormEmail" placeholder="email@example.com" required
+                  email #email="ngModel">
+                <label class="pt-2" for="dropdownFormPassword" required>Password</label>
+                <input ngModel name="password" type="password" class="form-control" id="dropdownFormPassword" placeholder="Password" #password="ngModel">
+                <div class="row pl-5">
+                  <input type="checkbox" class="form-check-input align-self-center" id="dropdownFormCheck">
+                  <label class="pt-2 align-self-center" for="dropdownFormCheck">Show password</label>
+                </div>
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger mt-2">
+                  <div *ngIf="email.errors.required; else incompleteEmail">
+                    Email is required.
+                  </div>
+                  <ng-template #incompleteEmail>
+                    Email isn't valid
+                  </ng-template>
+                </div>
+                <button style="margin-top: 10px" type="submit" class="btn btn-primary btn-block">Sign in</button>
+              </form>
+
+              <!-- linea de division dentro del dropdown -->
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Forgot password?</a>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

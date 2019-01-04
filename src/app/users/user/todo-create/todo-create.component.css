@@ -1,0 +1,11 @@
+.containerUpSpace{
+    margin-top: 10vw;
+}
+
+h1 {
+    @media (min-width: 768px) {
+        display: inline;
+        color: red;
+        
+    }
+}
