@@ -4,16 +4,15 @@ navbar-expand-md indica a que tamano de pantalla ocurre el colapso -->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <a class="navbar-brand" href="">ToDoList</a>
 
-  <!-- Este boton es la hamburguesa -->
+  <!-- boton para el dropdown -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <!-- collapse navbar-collapse indica que este div es el que se va a colapsar y el id tambien ayuda en eso (no se como) -->
+  <!-- este es el div donde va todo lo que se colapsa -->
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-    <!-- navbar-nav permite el uso de dropdowns y mantiene todo a la misma altura full 
-    el mr-auto permite que todo lo que venga despues, en este caso despues del ul vaya pegado del lado derecho del navbar -->
+    <!-- el ngClass revisa en cual pagina se esta -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" [ngClass]="{'active': navbarActive==='Home'}">
         <a class="nav-link" href="#">Home
@@ -31,6 +30,7 @@ navbar-expand-md indica a que tamano de pantalla ocurre el colapso -->
     </ul>
     <!-- Este es un ul distinto para que salgn del lado derecho del navbar -->
     <ul class="navbar-nav">
+      <!-- el boton de login y sign up no salen si el usario ya ingreso -->
       <li *ngIf="token === null || token === void">
         <a class="nav-link" href="#">Sign Up
           <span class="sr-only">(current)</span>
@@ -39,16 +39,12 @@ navbar-expand-md indica a que tamano de pantalla ocurre el colapso -->
       <li *ngIf="token === null || token === void">
 
         <!-- ngbDropdown es la manera de iniciar dropdowns en angular 4 con ng-boostrap sin la necesidad de scripts aparte
-        la directiva ngDropdownToggle indica que boton, link, etc activa el dropdown
-        el span es el triangulit de adorno
-        ngbDropdownMenu es la directiva para establecer que eso es lo que se muestra en el dropdown
-        la clase p-4 sirve para darle padding a lo que esta dentro del dropdwon y no se salga del mismo
-        el pl-5 cumple la misma funcionalidad solo que para el checkbox padding left 5 
-        align-self-center es para centrar en el centro vertical, en este caso es para que lable y el checkbox esten a la misma altura-->
+        la directiva ngDropdownToggle indica que boton, link, etc activa el dropdown-->
         <div ngbDropdown>
           <a ngbDropdownToggle class="nav-link" href="#" id="dropdownMenuLink">
             <span class="glyphicon glyphicon-triangle-bottom"></span> Login
           </a>
+          <!-- ngbDropdownMenu es la directiva para establecer que eso es lo que se muestra en el dropdown -->
           <div class="login" ngbDropdownMenu>
             <div class="container p-4">
               <form (ngSubmit)="onSubmit(form)" #form="ngForm">
@@ -61,6 +57,7 @@ navbar-expand-md indica a que tamano de pantalla ocurre el colapso -->
                   <input type="checkbox" class="form-check-input align-self-center" id="dropdownFormCheck">
                   <label class="pt-2 align-self-center" for="dropdownFormCheck">Show password</label>
                 </div>
+                <!-- mensajes de error en caso de que no se cumpla con las reglas del form -->
                 <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger mt-2">
                   <div *ngIf="email.errors.required; else incompleteEmail">
                     Email is required.
@@ -69,11 +66,12 @@ navbar-expand-md indica a que tamano de pantalla ocurre el colapso -->
                     Email isn't valid
                   </ng-template>
                 </div>
+
                 <button style="margin-top: 10px" type="submit" class="btn btn-primary btn-block">Sign in</button>
               </form>
-
               <!-- linea de division dentro del dropdown -->
               <div class="dropdown-divider"></div>
+
               <a class="dropdown-item" href="#">Forgot password?</a>
             </div>
           </div>

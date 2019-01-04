@@ -10,8 +10,9 @@ export class TodoHTTPService {
 
   constructor(private temporal: TemporalService, private http: HttpClient) { }
 
+
+  //Guarda todos los todos en firebase
   storeTodos(){
-    console.log(this.temporal.sendTodos().length);
     this.http.put("https://managementapplication-ab8f0.firebaseio.com/todos.json", this.temporal.sendTodos()).subscribe(
       (response: Response) => {
         console.log(response);

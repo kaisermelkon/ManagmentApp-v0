@@ -9,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  //navbarActve: establecer que pagina esta activa
+  //token: para la autentificacion
   navbarActive: string;
   token;
 
   constructor(config: NgbDropdownConfig) { 
+    //configuraciones del dropdown
     config.placement = 'bottom-right';
     config.autoClose='outside';
   }
@@ -20,6 +23,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  //recibe la forma del login y llama a la autentificacion
   onSubmit(form: NgForm){
 
   }
