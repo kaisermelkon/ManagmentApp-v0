@@ -13,6 +13,7 @@ export class TemporalService {
     this.todos=[
       new Todo("buy laptop"),
       new Todo("buy groceries"),
+      new Todo("sell bananas"),
     ];
   }
 

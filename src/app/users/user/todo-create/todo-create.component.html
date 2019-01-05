@@ -4,18 +4,16 @@
       <div *ngIf="!todosEmpty()">
         <h1>Theres no To Do's yet. Create one now</h1>
       </div>
-      
+
       <form class="mt-4" (ngSubmit)="onSubmit(form)" #form="ngForm">
         <!-- <div class="align-items-center"> -->
 
 
 
-        <div class="input-group mb-3 ">
+        <div class="input-group mb-3 rounded">
           <input class="form-control" ngModel name="todoNew" type="text" #todoNew="ngModel">
           <div class="input-group-append">
-
-            <button class="btn btn-primary" type="button">Add</button>
-
+            <button class="btn btn-primary border" type="button">Add</button>
           </div>
         </div>
 
@@ -29,6 +27,43 @@
             </div>
           </div>
         </div> -->
+
+
+
+        <div class="container mt-5 border rounded ">
+
+          <div class="row border justify-content-center pl-3 pt-1 pb-1" *ngFor="let todo of todos">
+            
+              <span class="align-middle ">{{todo.text}}</span>
+           
+            
+              <button type="button" class="btn btn-danger border">
+                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              </button>
+            
+         
+            
+            
+            
+            
+
+
+
+
+            <!-- <div class="input-group-append">
+                  <button class="btn btn-primary border" type="button">Add</button>
+              </div> -->
+
+            <!-- <div class="input-group mb-3 rounded">
+                  <input class="form-control" ngModel name="todoNew" type="text" #todoNew="ngModel">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary border" type="button">Add</button>
+                  </div>
+                </div> -->
+          </div>
+
+
+        </div>
       </form>
     </div>
   </div>

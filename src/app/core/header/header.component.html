@@ -32,7 +32,7 @@ navbar-expand-md indica a que tamano de pantalla ocurre el colapso -->
     <ul class="navbar-nav">
       <!-- el boton de login y sign up no salen si el usario ya ingreso -->
       <li *ngIf="token === null || token === void">
-        <a class="nav-link" href="#">Sign Up
+        <a class="nav-link" routerLink="signUp" href="#">Sign Up
           <span class="sr-only">(current)</span>
         </a>
       </li>
