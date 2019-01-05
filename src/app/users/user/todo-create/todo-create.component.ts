@@ -3,6 +3,7 @@ import { Todo } from '../../../shared/models/todo';
 import { TemporalService } from 'src/app/temporal.service';
 import { TodoHTTPService } from 'src/app/shared/services/todo-http.service';
 import { NgForm } from '@angular/forms';
+import { TodoService } from 'src/app/shared/services/todo/todo.service';
 
 @Component({
   selector: 'app-todo-create',
@@ -14,11 +15,12 @@ export class TodoCreateComponent implements OnInit {
   //todos: vector de Todo's
   private todos: Todo[]=[];
   
-  constructor(private temporal: TemporalService, private http: TodoHTTPService) {}
+  constructor(private temporal: TemporalService, private http: TodoHTTPService, private todoService: TodoService) {}
 
   ngOnInit() {
     //crea una copia de los todos del servicio dummy
-    this.todos=this.temporal.sendTodos().slice();
+    //this.todos=this.temporal.sendTodos().slice();
+    this.todos=this.todoService.sendTodos();
   }
 
   //si no hay todos retorna true

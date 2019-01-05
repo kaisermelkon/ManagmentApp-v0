@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Todo } from 'src/app/shared/models/todo';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,12 +16,14 @@ export class TemporalService {
       new Todo("buy laptop"),
       new Todo("buy groceries"),
       new Todo("sell bananas"),
+      new Todo("buy rice")
     ];
+    
   }
 
   sendTodos(){
-    
-     return this.todos;
-     
+    return this.todos;
   }
+
+  
 }
