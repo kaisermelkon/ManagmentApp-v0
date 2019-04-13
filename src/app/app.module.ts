@@ -14,10 +14,12 @@ import { AuthGuardService } from './shared/guards/auth-guard/auth-guard.service'
 import { AuthInterceptor } from './shared/services/auth.interceptor';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+
   ],
   imports: [
     BrowserModule,

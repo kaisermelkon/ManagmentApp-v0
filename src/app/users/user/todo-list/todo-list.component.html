@@ -1,0 +1,47 @@
+<!--El navbar de herramientas de la lista de todos-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <button class="navbar-buttons btn btn-light" type="button">Create
+      <span><i class="fas fa-plus"></i></span>
+    </button>
+    <button class="navbar-buttons btn btn-light" type="button">Delete
+      <span><i class="fas fa-trash-alt"></i></span>
+    </button>
+    <button class="navbar-buttons btn btn-light" type="button">Favorite
+      <span><i class="fas fa-star"></i></span>
+    </button>
+    <button class="navbar-buttons btn btn-light" type="button">Newest
+      <span><i class="fas fa-arrow-up"></i></span>
+    </button>
+    <button class="navbar-buttons btn btn-light" type="button">Oldest
+      <span><i class="fas fa-arrow-up"></i></span>
+    </button>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="justify-content-center row">
+    <div class="col">
+
+    </div>
+    <div class="col-6">
+      <div class="containerUpSpace text-center input-width">
+        <div class="message-noTodos" *ngIf="todosEmpty()">
+          <h1>Theres no To Do's yet. Create one now</h1>
+        </div>
+        <form class="mt-4" (ngSubmit)="onSubmit(form)" #form="ngForm">
+          <div class="input-group mb-3 rounded">
+            <input class="form-control" ngModel name="todoListNew" type="button" #todolistNew="ngModel">
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col">
+
+    </div>
+  </div>
+</div>

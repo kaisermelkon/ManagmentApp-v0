@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsersRoutingModule } from 'src/app/users/users-routing.module';
 import {FormsModule} from '@angular/forms';
+import { TodoListComponent } from './user/todo-list/todo-list.component';
 
 @NgModule({
   declarations: [
-    TodoCreateComponent
+    TodoCreateComponent,
+    TodoListComponent
   ],
   imports: [
     CommonModule,

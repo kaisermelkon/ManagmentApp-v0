@@ -4,6 +4,7 @@ import { TemporalService } from 'src/app/temporal.service';
 import { TodoHTTPService } from 'src/app/shared/services/todo-http.service';
 import { NgForm } from '@angular/forms';
 import { TodoService } from 'src/app/shared/services/todo/todo.service';
+import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 
 @Component({
   selector: 'app-todo-create',
@@ -38,7 +39,7 @@ export class TodoCreateComponent implements OnInit {
 
   //recbe el form del nuevo todo 
   onSubmit(form: NgForm){
-
+    
   }
 
 }

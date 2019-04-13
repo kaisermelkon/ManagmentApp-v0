@@ -8,7 +8,7 @@ export class AuthInterceptor implements HttpInterceptor{
 
     constructor(private authService: AuthService){}
     
-    //intercepta todos los requests que salen al servidor y les agrega la utetificacion del token
+    //intercepta todos los requests que salen al servidor y les agrega la autetificacion del token
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
         const copiedRequest= request.clone({params: request.params.set('auth', this.authService.getToken())});
         return next.handle(copiedRequest);

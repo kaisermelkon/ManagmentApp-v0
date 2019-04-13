@@ -1,4 +1,36 @@
+/*pone la imagen de fonde del background*/
 .login {
     background-image: url("../../../assets/image/loginBackground.jpeg");
     background-repeat: no-repeat;
 }
+
+/*pone la imagen del backgroun del dropdown autentificado y aregla el padding y border*/ 
+.login-authenticated{
+    background-image: url("../../../assets/image/loginBackground.jpeg");
+    background-repeat: no-repeat;
+    padding: 0;
+    border: 0;
+}
+
+/*desde 0px hasta 800px*/
+@media (max-width: 800px) {
+    /*hace a los botones del navbar desaparecer para pantallas pequenas*/
+    .navbar-buttons-collapse {
+      display: none;
+    }
+}
+
+/*desde 800px hasta el maximo*/
+@media (min-width: 800px) {
+    /*hace a la hamburguesa desaparecer cuando los botones desaparecen*/
+    .navbar-hamburger-collapse {
+      display: none;
+    }
+}
+
+/*le da el borde a las a tags del dropdown autentificado*/
+.navbar-dropdown-authenticated-a{
+    border: 0.15vw solid black;
+}
+
+

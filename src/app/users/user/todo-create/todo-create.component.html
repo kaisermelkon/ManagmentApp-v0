@@ -1,6 +1,6 @@
 <div class="container">
   <div class="justify-content-center row">
-    <div class="containerUpSpace text-center">
+    <div class="containerUpSpace text-center input-width">
       <div *ngIf="!todosEmpty()">
         <h1>Theres no To Do's yet. Create one now</h1>
       </div>
@@ -13,7 +13,8 @@
         <div class="input-group mb-3 rounded">
           <input class="form-control" ngModel name="todoNew" type="text" #todoNew="ngModel">
           <div class="input-group-append">
-            <button class="btn btn-primary border" type="button">Add</button>
+            <button class="btn btn-primary input-button-border" type="submit">Add</button>
+            <button class="btn btn-danger input-button-border" type="button">Delete</button>
           </div>
         </div>
 
@@ -30,16 +31,7 @@
 
 
 
-        <div class="container mt-5 border rounded ">
-
-          <div class="row border justify-content-center pl-3 pt-1 pb-1" *ngFor="let todo of todos">
-            
-              <span class="align-middle ">{{todo.text}}</span>
-           
-            
-              <button type="button" class="btn btn-danger border">
-                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-              </button>
+        
             
          
             
@@ -60,10 +52,7 @@
                     <button class="btn btn-primary border" type="button">Add</button>
                   </div>
                 </div> -->
-          </div>
-
-
-        </div>
+          
       </form>
     </div>
   </div>

@@ -1,0 +1,23 @@
+/*Le agrega un borde a los botones del input*/
+.input-button-border {
+    border: 1px solid grey;
+}
+
+/*Le agrega margen superior a el contenido de la pagina */
+.containerUpSpace{
+    margin-top: 10vw;
+}
+
+/*Le agrega margen inferior al mensaje de que aun no hay todos*/
+.message-noTodos{
+    margin-bottom: 5vw;
+}
+
+h1 {
+    font-size: 3vw;
+}
+
+/*Le agrega un margen izquierdo a los bototnes de el navbar de herramientos para que esten todos equitativamente distribuidos*/
+.navbar-buttons{
+    margin-left: 11.5vw;
+}

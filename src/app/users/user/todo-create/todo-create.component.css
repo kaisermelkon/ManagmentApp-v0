@@ -2,14 +2,18 @@
     margin-top: 10vw;
 }
 
-h1 {
-    @media (min-width: 768px) {
+@media (min-width: 768px) {
+    h1 {
         display: inline;
         color: red;
         
     }
 }
 
-#kdke{
-    height: 10vw;
+.input-button-border {
+    border: 1px solid grey;
+}
+
+.input-width{
+    width: 50vw;
 }

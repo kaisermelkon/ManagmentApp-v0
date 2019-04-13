@@ -3,7 +3,18 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { AuthService } from './auth/auth.service';
 import { TodoService } from './todo/todo.service';
 import { Todo } from '../models/todo';
-import { map } from "rxjs/operators";
+import { map, reduce } from "rxjs/operators";
+import { defaultScheduler } from '@angular/core/src/render3/util';
+import { ArgumentOutOfRangeError } from 'rxjs';
+import { Title } from '@angular/platform-browser';
+import { getRenderedText } from '@angular/core/src/render3';
+import { BlockingProxy } from 'blocking-proxy';
+import { noComponentFactoryError } from '@angular/core/src/linker/component_factory_resolver';
+import { calcBindingFlags } from '@angular/core/src/view/util';
+import { bloomAdd } from '@angular/core/src/render3/di';
+import { NONE_TYPE } from '@angular/compiler/src/output/output_ast';
+import { preserveWhitespacesDefault } from '@angular/compiler';
+import { SSL_OP_SINGLE_DH_USE } from 'constants';
 
 
 @Injectable({
@@ -26,7 +37,7 @@ export class TodoHTTPService {
     );
   }
 
-  //Obtiene todos los todos en firebase
+  //Obtiene todos los todos de firebase
   getTodos(){
     const token=this.authService.getToken();
     this.http.get<Todo[]>("https://managementapplication-ab8f0.firebaseio.com/todos.json?auth=" + token, {
@@ -64,3 +75,9 @@ export class TodoHTTPService {
   } */
 
 }
+
+
+
+
+
+

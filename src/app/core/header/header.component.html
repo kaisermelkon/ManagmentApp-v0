@@ -4,85 +4,146 @@ navbar-expand-md indica a que tamano de pantalla ocurre el colapso -->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <a class="navbar-brand" routerLink="/">ToDoList</a>
 
-  <!-- boton para el dropdown -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <!-- este es el div donde va todo lo que se colapsa -->
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-    <!-- el ngClass revisa en cual pagina se esta -->
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item" [ngClass]="{'active': navbarActive==='Home'}">
-        <a class="nav-link" routerLink="signUp">Home
 
-          <!-- No se que hace este span pero supuestamente es importante -->
-          <span class="sr-only">(current)</span>
+  <!-- el ngClass revisa en cual pagina se esta  y el if revisa si no esta autentificado no lo muestra-->
+  <ul class="navbar-nav mr-auto navbar-buttons-collapse" *ngIf="isAuthenticated()">
+    <li class="nav-item" [ngClass]="{'active': navbarActive==='Home'}">
+      <a class="nav-link" routerLink="signUp">Home
 
-        </a>
-      </li>
-      <li class="nav-item" [ngClass]="{'active': navbarActive==='Manage'}">
-        <a class="nav-link" href="#" routerLink="manage">Manage
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-    </ul>
-    <!-- Este es un ul distinto para que salgn del lado derecho del navbar -->
-    <ul class="navbar-nav">
-      <!-- el boton de login y sign up no salen si el usario ya ingreso -->
-      <li *ngIf="isAuthenticated()">
-        <a class="nav-link" href="#" (click)="logoutUser()">Logout
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li *ngIf="!isAuthenticated()">
-        <a class="nav-link" routerLink="signUp" href="#">Sign Up
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li *ngIf="!isAuthenticated()">
+        <!-- No se que hace este span pero supuestamente es importante -->
+        <span class="sr-only">(current)</span>
 
-        <!-- ngbDropdown es la manera de iniciar dropdowns en angular 4 con ng-boostrap sin la necesidad de scripts aparte
+      </a>
+    </li>
+    <li class="nav-item" [ngClass]="{'active': navbarActive==='Manage'}">
+      <a class="nav-link" href="#" routerLink="manage">Manage
+        <span class="sr-only">(current)</span>
+      </a>
+    </li>
+  </ul>
+  <!-- Este es un ul distinto para que salgn del lado derecho del navbar -->
+  <ul class="navbar-nav navbar-buttons-collapse ml-auto">
+    <!--El boton para deslogearte no sale a menos que este autentificado-->
+    <li *ngIf="isAuthenticated()">
+      <a class="nav-link" href="#" (click)="logoutUser()">Logout
+        <span class="sr-only">(current)</span>
+      </a>
+    </li>
+    <!-- el boton de login y sign up no salen si el usario ya ingreso -->
+    <li *ngIf="!isAuthenticated()">
+      <a class="nav-link" routerLink="signUp" href="#">Sign Up
+        <span class="sr-only">(current)</span>
+      </a>
+    </li>
+    <li *ngIf="!isAuthenticated()">
+      <!-- ngbDropdown es la manera de iniciar dropdowns en angular 4 con ng-boostrap sin la necesidad de scripts aparte
         la directiva ngDropdownToggle indica que boton, link, etc activa el dropdown-->
-        <div ngbDropdown>
-          <a ngbDropdownToggle class="nav-link" href="#" id="dropdownMenuLink">
-            <span class="glyphicon glyphicon-triangle-bottom"></span> Login
-          </a>
-          <!-- ngbDropdownMenu es la directiva para establecer que eso es lo que se muestra en el dropdown -->
-          <div class="login" ngbDropdownMenu>
-            <div class="container p-4">
-              <form (ngSubmit)="onSubmit(form)" #form="ngForm">
-                <label for="dropdownFormEmail">Email</label>
-                <input ngModel name="email" type="email" class="form-control" id="dropdownFormEmail" placeholder="email@example.com"
-                  required email #email="ngModel">
-                <label class="pt-2" for="dropdownFormPassword" required>Password</label>
-                <input ngModel name="password" type="password" class="form-control" id="dropdownFormPassword"
-                  placeholder="Password" #password="ngModel">
-                <div class="row pl-5">
-                  <input type="checkbox" class="form-check-input align-self-center" id="dropdownFormCheck">
-                  <label class="pt-2 align-self-center" for="dropdownFormCheck">Show password</label>
+      <div ngbDropdown>
+        <a ngbDropdownToggle class="nav-link" href="#" id="dropdownMenuLink">
+          <span class="glyphicon glyphicon-triangle-bottom"></span> Login
+        </a>
+        <!-- ngbDropdownMenu es la directiva para establecer que eso es lo que se muestra en el dropdown -->
+        <div class="login" ngbDropdownMenu>
+          <div class="container p-4">
+            <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+              <label for="dropdownFormEmail">Email</label>
+              <input ngModel name="email" type="email" class="form-control" id="dropdownFormEmail" placeholder="email@example.com"
+                required email #email="ngModel">
+              <label class="pt-2" for="dropdownFormPassword" required>Password</label>
+              <input ngModel name="password" type="password" class="form-control" id="dropdownFormPassword" placeholder="Password"
+                #password="ngModel">
+              <div class="row pl-5">
+                <input type="checkbox" class="form-check-input align-self-center" id="dropdownFormCheck">
+                <label class="pt-2 align-self-center" for="dropdownFormCheck">Show password</label>
+              </div>
+              <!-- mensajes de error en caso de que no se cumpla con las reglas del form -->
+              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger mt-2">
+                <div *ngIf="email.errors.required; else incompleteEmail">
+                  Email is required.
                 </div>
-                <!-- mensajes de error en caso de que no se cumpla con las reglas del form -->
-                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger mt-2">
-                  <div *ngIf="email.errors.required; else incompleteEmail">
-                    Email is required.
-                  </div>
-                  <ng-template #incompleteEmail>
-                    Email isn't valid
-                  </ng-template>
-                </div>
+                <ng-template #incompleteEmail>
+                  Email isn't valid
+                </ng-template>
+              </div>
 
-                <button style="margin-top: 10px" type="submit" class="btn btn-primary btn-block">Sign in</button>
-              </form>
-              <!-- linea de division dentro del dropdown -->
-              <div class="dropdown-divider"></div>
+              <button style="margin-top: 10px" type="submit" class="btn btn-primary btn-block">Sign in</button>
+            </form>
+            <!-- linea de division dentro del dropdown -->
+            <div class="dropdown-divider"></div>
 
-              <a class="dropdown-item" href="#">Forgot password?</a>
-            </div>
+            <a class="dropdown-item" href="#">Forgot password?</a>
+            <a class="dropdown-item" routerLink="signUp">Sign Up</a>
           </div>
         </div>
-      </li>
-    </ul>
-  </div>
+      </div>
+    </li>
+  </ul>
+
+  <!--La hamburguesa que solo aparece si estas a menos de 800px y del lado derecho-->
+  <ul class="navbar-nav ml-auto navbar-hamburger-collapse">
+    <!--Si no esta logeado, da el mismo form de login-->
+    <li *ngIf="!isAuthenticated()">
+      <div ngbDropdown>
+        <a ngbDropdownToggle class="nav-link" href="#" id="dropdownMenuLink">
+          <span><i class="fas fa-bars"></i></span>
+        </a>
+        <div class="login" ngbDropdownMenu>
+          <div class="container p-4">
+            <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+              <label for="dropdownFormEmail">Email</label>
+              <input ngModel name="email" type="email" class="form-control" id="dropdownFormEmail" placeholder="email@example.com"
+                required email #email="ngModel">
+              <label class="pt-2" for="dropdownFormPassword" required>Password</label>
+              <input ngModel name="password" type="password" class="form-control" id="dropdownFormPassword" placeholder="Password"
+                #password="ngModel">
+              <div class="row pl-5">
+                <input type="checkbox" class="form-check-input align-self-center" id="dropdownFormCheck">
+                <label class="pt-2 align-self-center" for="dropdownFormCheck">Show password</label>
+              </div>
+              <!-- mensajes de error en caso de que no se cumpla con las reglas del form -->
+              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger mt-2">
+                <div *ngIf="email.errors.required; else incompleteEmail">
+                  Email is required.
+                </div>
+                <ng-template #incompleteEmail>
+                  Email isn't valid
+                </ng-template>
+              </div>
+
+              <button style="margin-top: 10px" type="submit" class="btn btn-primary btn-block">Sign in</button>
+            </form>
+            <!-- linea de division dentro del dropdown -->
+            <div class="dropdown-divider"></div>
+
+            <a class="dropdown-item" href="#">Forgot password?</a>
+            <a class="dropdown-item" routerLink="signUp">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <!--Si esta logeado da todos las opciones restantes-->
+    <li *ngIf="isAuthenticated()">
+      <div ngbDropdown>
+        <a ngbDropdownToggle class="nav-link" id="dropdownMenuLink">
+          <span><i class="fas fa-bars"></i></span>
+        </a>
+        <div class="login-authenticated" ngbDropdownMenu>
+          
+            <a class="dropdown-item navbar-dropdown-authenticated-a" routerLink="signUp">Home
+              <span class="sr-only">(current)</span>
+            </a>
+            <a class="dropdown-item navbar-dropdown-authenticated-a" href="#" routerLink="manage">Manage
+              <span class="sr-only">(current)</span>
+            </a>
+            <a class="dropdown-item navbar-dropdown-authenticated-a" href="#" (click)="logoutUser()">Logout
+              <span class="sr-only">(current)</span>
+            </a>
+        </div>
+      </div>
+    </li>
+  </ul>
 </nav>
+
+
+
